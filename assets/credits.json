@@ -1,0 +1,46 @@
+{
+  "totem-digital": {
+    "src": "assets/img/totem-digital.jpg",
+    "title": "VariPPC-8",
+    "creator": "Poindus Systems Corp",
+    "creator_url": "https://www.flickr.com/photos/107796805@N05",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/107796805@N05/14285785082",
+    "source": "flickr"
+  },
+  "restaurant-interior": {
+    "src": "assets/img/restaurant-interior.jpg",
+    "title": "Free modern restaurant interior image",
+    "creator": "Unknown",
+    "creator_url": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5905263/photo-image-public-domain-table-room",
+    "source": "rawpixel"
+  },
+  "hotel-lobby": {
+    "src": "assets/img/hotel-lobby.jpg",
+    "title": "The Gym Spa",
+    "creator": "slgckgc",
+    "creator_url": "https://www.flickr.com/photos/14771153@N04",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/14771153@N04/5321479774",
+    "source": "flickr"
+  },
+  "retail-store": {
+    "src": "assets/img/retail-store.jpg",
+    "title": "Target Springfield, VA",
+    "creator": "j.reed",
+    "creator_url": "https://www.flickr.com/photos/45383134@N00",
+    "license": "by-sa",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/45383134@N00/379881272",
+    "source": "flickr"
+  }
+}
