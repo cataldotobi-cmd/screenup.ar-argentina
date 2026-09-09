@@ -1543,7 +1543,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
     filter: blur(28px) brightness(0.85);
     transform: scale(1.15);
   }
-  .hero-bg-img img { object-fit: contain; object-position: center 30%; background: transparent; }
+  .hero-bg-img img { position: relative; z-index: 1; object-fit: contain; object-position: center 30%; background: transparent; }
   .hero-overlay {
     background: linear-gradient(180deg,
       rgba(5,10,26,0.55) 0%,
