@@ -28,8 +28,14 @@
     };
     var video = document.getElementById("splashVideo");
     if (video) {
+      var fallback = function () { setTimeout(hide, 1800); };
       video.addEventListener("ended", hide);
-      setTimeout(hide, 8000); // seguridad por si el video falla
+      video.addEventListener("error", fallback);
+      var playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(fallback); // autoplay bloqueado (p.ej. navegador in-app de WhatsApp/Instagram)
+      }
+      setTimeout(hide, 6000); // seguridad por si el video no dispara 'ended'
     } else {
       setTimeout(hide, 1800);
     }

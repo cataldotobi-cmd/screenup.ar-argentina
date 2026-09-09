@@ -37,7 +37,12 @@
 
 /* --- RESET --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  background: #050a1a;
+  overscroll-behavior-y: none;
+}
 body {
   font-family: var(--font-body);
   font-size: 16px;
@@ -45,6 +50,7 @@ body {
   color: var(--ink);
   background: var(--off-white);
   overflow-x: hidden;
+  overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; height: auto; display: block; }
@@ -66,8 +72,6 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
   background: var(--blue);
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
-  /* Fallback CSS: se cierra solo a los 8s aunque JS falle */
-  animation: splashFadeOut 0.7s var(--ease-out) 8s both;
 }
 @keyframes splashFadeOut {
   to { opacity: 0; visibility: hidden; pointer-events: none; }
@@ -1530,7 +1534,16 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
   .nav-toggle { display: flex; }
 
   .hero { min-height: 75vh; padding: 0; }
-  .hero-bg-img img { object-fit: contain; object-position: center 30%; background: #d9cdb8; }
+  .hero-bg-img::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url('assets/img/foto-portada-movil.png');
+    background-size: cover;
+    background-position: center 30%;
+    filter: blur(28px) brightness(0.85);
+    transform: scale(1.15);
+  }
+  .hero-bg-img img { object-fit: contain; object-position: center 30%; background: transparent; }
   .hero-overlay {
     background: linear-gradient(180deg,
       rgba(5,10,26,0.55) 0%,
@@ -1574,9 +1587,9 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
   .sectores-grid { grid-template-columns: 1fr; }
 }
 
-/* Splash safety net: hide after 4.5s even if JS fails */
+/* Splash: se oculta sola a los 6.5s aunque el JS falle o el video no cargue */
 .splash {
-  animation: splashSafetyHide 0.6s var(--ease-out) 4.5s forwards;
+  animation: splashSafetyHide 0.6s var(--ease-out) 6.5s forwards;
 }
 @keyframes splashSafetyHide {
   to { opacity: 0; visibility: hidden; pointer-events: none; }
