@@ -26,7 +26,19 @@
       document.body.style.background = "";
       setTimeout(function () { splash.style.display = "none"; }, 700);
     };
-    setTimeout(hide, 1800);
+    var video = document.getElementById("splashVideo");
+    if (video) {
+      var fallback = function () { setTimeout(hide, 1800); };
+      video.addEventListener("ended", hide);
+      video.addEventListener("error", fallback);
+      var playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(fallback); // autoplay bloqueado (p.ej. navegador in-app de WhatsApp/Instagram)
+      }
+      setTimeout(hide, 6000); // seguridad por si el video no dispara 'ended'
+    } else {
+      setTimeout(hide, 1800);
+    }
   }
 
   // --- NAV ---
@@ -182,18 +194,6 @@
     }, 6000);
   }
 
-  // --- GSAP HERO ---
-  function initHeroAnimation() {
-    if (typeof gsap === "undefined") return;
-
-    var tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    tl.from(".hero-kicker", { opacity: 0, y: 20, duration: 0.6, delay: 2 })
-      .from(".hero-title", { opacity: 0, y: 30, duration: 0.7 }, "-=0.3")
-      .from(".hero-sub", { opacity: 0, y: 20, duration: 0.6 }, "-=0.3")
-      .from(".hero-buttons", { opacity: 0, y: 20, duration: 0.5 }, "-=0.2")
-      .from(".hero-scroll-hint", { opacity: 0, duration: 0.5 }, "-=0.2");
-  }
-
   // --- GSAP SCROLL ANIMATIONS ---
   function initScrollAnimations() {
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
@@ -310,7 +310,6 @@
     safe(function () { initSlider(".resenas-track-wrap", ".resenas-dot", ".resena-card"); }, "resenasSlider");
     safe(function () { initSlider(".productos-track-wrap", ".productos-dot", ".producto-card"); }, "productosSlider");
     safe(function () { initSlider(".extras-track-wrap", ".extras-dot", ".extra-card"); }, "extrasSlider");
-    safe(initHeroAnimation, "heroAnim");
     safe(initScrollAnimations, "scrollAnim");
     safe(initMagnetic, "magnetic");
   }
